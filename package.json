@@ -1,0 +1,36 @@
+{
+  "name": "sveltekit-pluggable-static-adapter-webp-plugin",
+  "version": "1.0.0",
+  "description": "Plugin for generating Webp images from a static Sveltekit build. To be used with @ivorgri/sveltekit-pluggable-static-adapter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "build": "npm run lint && npm run format && tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivorgri/sveltekit-pluggable-static-adapter-webp-plugin.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivorgri/sveltekit-pluggable-static-adapter-webp-plugin/issues"
+  },
+  "homepage": "https://github.com/ivorgri/sveltekit-pluggable-static-adapter-webp-plugin#readme",
+  "devDependencies": {
+    "@types/imagemin": "^8.0.0",
+    "@types/imagemin-webp": "^7.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "imagemin": "^8.0.1",
+    "imagemin-webp": "^7.0.0",
+    "prettier": "^2.5.1",
+    "tiny-glob": "^0.2.9",
+    "typescript": "^4.5.5"
+  },
+  "files": ["lib/**/*"]
+}
