@@ -1,12 +1,14 @@
 import glob = require("tiny-glob");
-import imagemin from "imagemin";
-import imageminWebp from "imagemin-webp";
+import sharp = require("sharp");
+import * as fs from "fs";
 
 /**
  * @param {string} assetsDirectory
  */
-export const convert_webp = async (assetsDirectory: string) => {
-  const files = await glob("**/*.{jpg,jpeg,png}", {
+async function convertImagesToWebp(builder: any, assetsDirectory: string) {
+  builder.log("Starting conversion of images to .webp format");
+  const imageExtensions = ["jpg", "jpeg", "png"];
+  const files = await glob(`**/*.{${imageExtensions.join(",")}}`, {
     cwd: assetsDirectory,
     dot: true,
     absolute: true,
@@ -14,19 +16,22 @@ export const convert_webp = async (assetsDirectory: string) => {
   });
 
   await Promise.all(
-    files.map((file: string) => Promise.all([convert_webp_file(file)]))
+    files.map((file: string) =>
+      Promise.all([convertWebpFile(file, imageExtensions)])
+    )
   );
-};
+  builder.log("Done with conversion of images to .webp format");
+}
 
 /**
  * @param {string} file
+ * @param {string[]} imageExtensions
  */
-async function convert_webp_file(file: string) {
-  const buildImagePathArray = file.split("/");
-  const fileName = buildImagePathArray[buildImagePathArray.length - 1];
-  const newAssetPath = file.replace(fileName, "");
-  await imagemin([file], {
-    destination: newAssetPath,
-    plugins: [imageminWebp({})],
-  });
+async function convertWebpFile(file: string, imageExtensions: string[]) {
+  const imageExtensionRegex = new RegExp(`${imageExtensions.join("|")}$`, "gi");
+  const newAssetPath = file.replace(imageExtensionRegex, "webp");
+  const newAsset = await sharp(file).webp().toBuffer();
+  fs.writeFileSync(newAssetPath, newAsset);
 }
+
+module.exports = convertImagesToWebp;
