@@ -7,7 +7,7 @@ import * as fs from "fs";
  */
 async function convertImagesToWebp(builder: any, assetsDirectory: string) {
   builder.log("Starting conversion of images to .webp format");
-  const imageExtensions = ["jpg", "jpeg", "png"];
+  const imageExtensions = ["jpg", "jpeg", "png", "gif"];
   const files = await glob(`**/*.{${imageExtensions.join(",")}}`, {
     cwd: assetsDirectory,
     dot: true,
