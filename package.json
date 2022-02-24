@@ -1,6 +1,6 @@
 {
   "name": "@ivorgri/sveltekit-pluggable-static-adapter-webp-plugin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Plugin for generating Webp images from a static Sveltekit build. To be used with @ivorgri/sveltekit-pluggable-static-adapter",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
